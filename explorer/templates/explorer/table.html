@@ -1,0 +1,24 @@
+{% load helpers %}
+{# table toggle between parsed and original #}
+<div class="btn-group btn-group-toggle" data-toggle="buttons"
+     onchange="tableToggle({{ table.id }})">
+    <label class="btn btn-secondary btn-sm active">
+        <input type="radio" name="options" id="table-option1-{{ table.id }}" autocomplete="off" checked>Tabel
+    </label>
+    {% if table.img %}
+    <label class="btn btn-secondary btn-sm">
+        <input type="radio" name="options" id="table-option2-{{ table.id }}" autocomplete="off">Origineel
+    </label>
+    {%  endif %}
+</div>
+<div id="table-text-{{ table.id }}">
+    {% if term %}
+        {{ table.to_html | highlight:term | safe }}
+    {%  else %}
+        {{ table.to_html | safe }}
+    {% endif %}
+</div>
+<div id="table-img-{{ table.id }}" style="display:none">
+    <img src="data:image/png;base64,{{ table.img }}" width="100%"/>
+</div>
+<br><br>

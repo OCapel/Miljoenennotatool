@@ -1,0 +1,9 @@
+Self-service node can be accessed via port 5000 on the following DNS name from within your cluster:
+{{ template "coalitieakkoordentool.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+--
+{{ if .Values.ingress.enabled -}}
+From outside the cluster, the server URL(s) are:
+{{ range .Values.ingress.hosts }}
+https://{{ . }}
+{{- end }}
+{{- end }}

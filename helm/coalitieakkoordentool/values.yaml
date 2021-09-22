@@ -1,0 +1,90 @@
+## container name
+##
+name: coalitieakkoordentool
+
+## container image
+##
+image:
+  repository: registry.gitlab.com/vng-realisatie/coalitieakkoordentool
+  tag: develop
+  pullPolicy: Always
+
+## strategy
+##
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 0
+
+## number of replicas
+##
+replicaCount: 3
+
+## Annotations to be added to deployment
+##
+deploymentAnnotations: {}
+
+## Annotations to be added to self-service-node server pods
+##
+podAnnotations: {}
+
+## Labels to be added to self-service-node server pods
+##
+podLabels: {}
+
+## self-service-node server resource requests and limits
+## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
+##
+resources: {}
+  # requests:
+  #   cpu: 5m
+  #   memory: 5Mi
+  # limits:
+  #   cpu: 25m
+  #   memory: 25Mi
+
+## Ingress
+##
+ingress:
+  ## If true, Ingress will be created
+  ##
+  enabled: true
+
+  ## Ingress annotations
+  ##
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+
+  ## Ingress additional labels
+  ##
+  extraLabels: {}
+
+  ## Ingress hostnames with optional path
+  ## Must be provided if Ingress is enabled
+  ##
+  hosts:
+    - tool2018.coalitieakkoorden.nl
+
+  ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
+  extraPaths: []
+  # - path: /*
+  #   backend:
+  #     serviceName: ssl-redirect
+  #     servicePort: use-annotation
+
+  ## Ingress TLS configuration
+  ## Secrets must be manually created in the namespace
+  ##
+  tls:
+    - secretName: tool2018-coalitieakkoorden-nl-ingress-tls
+      hosts:
+        - tool2018.coalitieakkoorden.nl
+
+## Service
+##
+service:
+  annotations: {}
+  labels: {}
+
+

@@ -1,0 +1,22 @@
+{% extends "explorer/base.html" %}
+{% load static %}
+{% block content %}
+{#    {% regroup tables by document as table_list %}#}
+{#    {% for document in table_list %}#}
+{#        <table class="table">#}
+{#            <thead class="thead-light">#}
+{#            <tr>#}
+{#                <th>{{ document.naam }}</th>#}
+{#            </tr>#}
+{#            </thead>#}
+{#        </table>#}
+        {% for table in tables %}
+            {% include 'explorer/table.html' with table=table term=term%}
+        {% endfor %}
+{#    {% endfor %}#}
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+    <script src="{% static 'explorer/js/scripts.js' %}"></script>
+{% endblock %}

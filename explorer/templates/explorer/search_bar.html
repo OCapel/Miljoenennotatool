@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-sm-8 mx-auto">
+        <form class="form-inline" action="{% url 'explorer:search' %}" method="post">
+            {% csrf_token %}
+            <div class="input-group w-100">
+                <input class="form-control" type="search" name="search" id="search" value="{{ term }}">
+                <div class="input-group-append">
+                    <input class="btn btn-primary" type="submit" value="Zoek">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

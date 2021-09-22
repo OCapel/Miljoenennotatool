@@ -1,0 +1,5 @@
+{% extends "explorer/base.html" %}
+{% block content %}
+    <h1 class="mx-auto col-sm-8">{{ document.title }}</h1>
+    <div class="mx-auto col-sm-8">{{ document.get_document | safe | linebreaks }}</div>
+{% endblock %}

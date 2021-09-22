@@ -1,0 +1,40 @@
+{% extends "explorer/base.html" %}
+{% load static %}
+{% block content %}
+    <h3 class="mx-2">{{ highlights | length }} document gevonden.</h3>
+{#    <button class="btn badge-light" onclick="toggleSummary()">Samenvatting</button>#}
+    <div id="summary">
+        <div class="mx-auto text-center"><img id="wordcloud-img" src="data:image/png;base64,{{ wordcloud }}"/></div>
+{#        <div id="relevance_ts"></div>#}
+        <div id="category_pie" class="center"></div>
+    </div>
+    <div>
+        {% for document, hls in highlights.items %}
+            <table class="table result-table">
+                <thead class="thead-light">
+                <tr id="{{ document.id }}">
+                    <th><a href={% url "explorer:embedded" document.id hl_terms %} target="_blank">{{ document.title }}</a></th>
+
+                </tr>
+                </thead>
+                {% for highlight in hls %}
+                    <tr>
+                        <td>{{ highlight | safe }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endfor %}
+    </div>
+    <div id="scores" style="display: none">
+        {{ scores | safe }}
+    </div>
+    <div id="frequencies" style="display: none">
+        {{ category_frequencies | safe }}
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+    <script src="{% static 'explorer/js/scripts.js' %}"></script>
+{% endblock %}

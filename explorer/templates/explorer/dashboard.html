@@ -1,0 +1,13 @@
+{% extends "explorer/base.html" %}
+{% load plotly_dash %}
+
+
+{% block content %}
+
+
+
+    <div class="{% plotly_class name="dashboard" template_type="div-direct" %}">
+        {% plotly_direct name="dashboard" %}
+    </div>
+    <p></p>
+{% endblock %}

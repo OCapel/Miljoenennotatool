@@ -1,0 +1,112 @@
+#mapid {
+    height: 450px;
+    width: 100%;
+}
+
+em.highlight{
+    background-color: #e2e616;
+}
+
+table th td{
+    border: 1px solid black;
+    width: 100%;
+}
+
+#input-panel {
+    display: none;
+    float:right;
+    height: 100%;
+    width: 0%;
+    padding: 20px;
+}
+
+#results {
+    float: left;
+    width: 100%;
+}
+
+#risk-input {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+#risk-form {
+    position: fixed;
+    margin: 20px;
+}
+
+
+#form-messages {
+    position: fixed;
+    bottom: 50px;
+}
+
+.logo {
+    margin: 5px;
+}
+
+.logo svg {
+    height: 100px;
+}
+
+.middle {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.search-bar {
+    background-color: #e2e9f3;
+}
+
+.legend {
+    line-height: 26px;
+    color: #555;
+}
+
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    margin-top: 4px;
+    opacity: 1;
+    border: 1px solid black;
+}
+
+#relevance_ts {
+    height: 400px;
+    width: 100%;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+#category_pie{
+    width: 100%
+}
+
+#wordcloud{
+    width: 100%
+}
+
+#dash-wordcloud{
+    margin-top: 50px;
+    width: 100%;
+}
+
+#wordcloud-img{
+    width: 900px;
+}
+
+._dash-undo-redo {
+    display: none;
+}
+
+.clickable {
+    cursor: pointer;
+}

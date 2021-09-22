@@ -1,0 +1,21 @@
+{% extends "admin/base.html" %}
+
+{% block extrahead %}
+{{ block.super }}
+<script>
+
+setTimeout(function(){
+        let e = document.getElementById("id_document");
+        if(e){
+
+            e.onchange = x => {
+                let file_name = e.files[0].name.split('.')
+                file_name.pop()
+                file_name = file_name.join('.');
+                document.getElementById('id_title').value = file_name;
+                };
+        }
+    }, 1000)
+
+</script>
+{% endblock %}

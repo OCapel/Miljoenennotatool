@@ -1,0 +1,24 @@
+apiVersion: v2
+name: coalitieakkoorden
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 0.1.0
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. Versions are not expected to
+# follow Semantic Versioning. They should reflect the version the application is using.
+# It is recommended to use it with quotes.
+appVersion: "1.16.0"
+
+description: A view of related data to assist in the creation of plans of the Dutch municipalities.
+home: https://tool.coalitieakkoorden.nl
+icon: https://assets.gitlab-static.net/uploads/-/system/project/avatar/17446507/electra4.png?width=64
+sources:
+  - https://gitlab.com/vng-realisatie/coalitieakkoordentool
+maintainers:
+  - name: ramsydevos
+    email: ramsy@ramsy.dev
+engine: gotpl
+type: application

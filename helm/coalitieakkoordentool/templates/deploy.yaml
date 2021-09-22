@@ -1,0 +1,57 @@
+apiVersion: {{ template "deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+{{- if .Values.deploymentAnnotations }}
+  annotations:
+    {{ toYaml .Values.deploymentAnnotations | nindent 4 }}
+{{- end }}
+  labels:
+    {{- include "coalitieakkoordentool.labels" . | nindent 4 }}
+  name: {{ template "coalitieakkoordentool.fullname" . }}
+{{ include "coalitieakkoordentool.namespace" . | indent 2 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "coalitieakkoordentool.matchLabels" . | nindent 6 }}
+  replicas: {{ .Values.replicaCount }}
+  {{- if .Values.strategy }}
+  strategy:
+{{ toYaml .Values.strategy | trim | indent 4 }}
+    {{ if eq .Values.strategy.type "Recreate" }}rollingUpdate: null{{ end }}
+{{- end }}
+  template:
+    metadata:
+    {{- if .Values.podAnnotations }}
+      annotations:
+        {{ toYaml .Values.alertmanager.podAnnotations | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "coalitieakkoordentool.labels" . | nindent 8 }}
+        {{- if .Values.podLabels}}
+        {{ toYaml .Values.podLabels | nindent 8 }}
+        {{- end}}
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: {{ template "coalitieakkoordentool.name" . }}-{{ .Values.name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          readinessProbe:
+            failureThreshold: 3
+            tcpSocket:
+              port: 5000
+            initialDelaySeconds: 300
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 1
+          livenessProbe:
+            failureThreshold: 3
+            tcpSocket:
+              port: 5000
+            initialDelaySeconds: 300
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
