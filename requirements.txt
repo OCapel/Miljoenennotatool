@@ -19,4 +19,4 @@ dash-core-components==0.48.0
 dash-html-components==0.16.0
 camelot-py==0.8.2
 pypdf2==1.26
-opencv-python==4.5.3.56
+opencv-python-headless
