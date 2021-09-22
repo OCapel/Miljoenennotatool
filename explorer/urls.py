@@ -1,7 +1,10 @@
 from django.urls import path
 from django.views.generic import TemplateView
 from . import views
-from explorer import dashboard
+try:
+  from explorer import dashboard
+except ImportError:
+  pass
 
 app_name = 'explorer'
 urlpatterns = [
